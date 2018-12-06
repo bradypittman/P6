@@ -18,25 +18,6 @@ bool DataStore::encrypt(std::string &myString) {
 	return false;
 }
 
-//force derived classes to implement load and store as appropriate
-bool DataStore::load(std::vector<String_Data> &myVector) {
-	for (std::vector<String_Data>::iterator myVec = myVector.begin();
-			myVec != myVector.end(); myVec++) {
-		std::string mystring = myVec->serialize();
-		decrypt(mystring);
-	}
-	return true;
-}
-
-bool DataStore::save(std::vector<String_Data> &myVector) {
-	for (std::vector<String_Data>::iterator myVec = myVector.begin();
-			myVec != myVector.end(); myVec++) {
-		std::string mystring = myVec->serialize();
-		encrypt(mystring);
-	}
-	return true;
-}
-
 //pass in a crypto object and it will be used to encrypt
 //data that is loaded or saved, otherwise data is stored in the clear
 DataStore::DataStore(Crypto * pCrypt) {
